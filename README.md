@@ -9,16 +9,19 @@ Static site for Tackle Montana, a Montana Institute of Sport program bringing fr
 - `script.js` — nav toggle, scroll reveal, stat counters, testimonial/team carousel
 - `assets/` — images
 
-## Placeholder images
+## Assets
 
-Every file in `assets/` is currently a generated placeholder (labeled "Photo Needed" / "Replace assets/...") standing in for real photography and logos:
+All files in `assets/` are real photos and logos (Gallatin Raptors training sessions, Coach Jed Holloway, and the Tackle Montana / Raptors / Bison / Hawks marks):
 
 - `logo_badge.png` — main site logomark
-- `hero_badge_field.jpg`, `stadium_testimonial.jpg` — full-bleed backgrounds
-- `coach_gallatin.jpg`, `coach_bozeman.jpg`, `jed_holloway.jpg`, `team_practice.jpg` — content photos
+- `stadium_testimonial.jpg` — testimonial section background
+- `coach_gallatin.jpg`, `coach_bozeman.jpg`, `team_huddle.jpg` — field training photos
+- `jed_holloway.jpg` — coach portrait
+- `team_practice.jpg`, `technique_demo.jpg` — mission page carousel
+- `field_action.jpg` — partners page photo
 - `logo_raptors.png`, `logo_bison.png`, `logo_hawk.png` — partner school logos
 
-To swap in real assets, replace each file **with the same filename** at roughly the same aspect ratio (noted in the placeholder image itself), and no HTML/CSS changes are needed.
+To swap in a new photo, replace the file **with the same filename** at roughly the same aspect ratio, and no HTML/CSS changes are needed.
 
 ## Local preview
 
