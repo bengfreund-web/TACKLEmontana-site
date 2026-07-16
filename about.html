@@ -7,7 +7,7 @@
 <meta name="description" content="Meet the coaches behind Tackle Montana — international rugby coaches bringing elite-level tackle technique to Montana football programs.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,25 +26,26 @@
   </nav>
 </header>
 
+<main>
+
 <section class="page-hero">
   <div class="wrap">
-    <p class="eyebrow reveal">Our Team</p>
-    <h1 class="reveal">Coached at the highest level rugby has to offer.</h1>
-    <p class="lead reveal">Tackle Montana is led by coaches with national-team and professional rugby pedigree — experience they bring straight to the practice field with your program.</p>
+    <p class="eyebrow" data-reveal="up">Our Team</p>
+    <h1 data-reveal="up">Coached at the highest level rugby has to offer.</h1>
+    <p class="lead" data-reveal="up">Tackle Montana is led by coaches with national-team and professional rugby pedigree — experience they bring straight to the practice field with your program.</p>
   </div>
 </section>
-
 
 <section class="section-pad">
   <div class="wrap">
 
-    <div class="bio reveal">
+    <div class="bio r-item" data-reveal="up">
       <div>
-        <svg viewBox="0 0 260 260" style="border-radius:6px;border:3px solid var(--navy-deep); background:var(--navy);">
+        <svg viewBox="0 0 260 260" style="border-radius:16px; background:var(--navy);">
           <rect width="260" height="260" fill="#0A1628"/>
           <polygon points="0,260 40,150 90,210 150,100 210,190 260,130 260,260" fill="#13233B"/>
           <circle cx="130" cy="95" r="45" fill="#4FB0F0" opacity="0.9"/>
-          <text x="130" y="230" text-anchor="middle" fill="#C3F04F" font-family="Poppins" font-weight="800" font-size="22">JD</text>
+          <text x="130" y="230" text-anchor="middle" fill="#C3F04F" font-family="Bricolage Grotesque" font-weight="700" font-size="22">JD</text>
         </svg>
       </div>
       <div>
@@ -61,7 +62,7 @@
       </div>
     </div>
 
-    <div class="bio reveal">
+    <div class="bio r-item" data-reveal="up">
       <div>
         <img src="assets/jed_holloway.jpg" alt="Jed Holloway, signed rugby trading card">
       </div>
@@ -84,26 +85,31 @@
 
 <section class="section-pad section-alt">
   <div class="wrap">
-    <div class="split reveal">
-      <div>
+    <div class="split" data-reveal="fade">
+      <div data-reveal="up">
         <p class="eyebrow">About MIS</p>
         <h3>Better young Montanans, through physical education.</h3>
         <p>Founded in 2022 by Ali Behnam and JD Stephenson, the Montana Institute of Sport is a 501(c)(3) nonprofit dedicated to improving physical education in Montana's public schools through curriculum support, teaching grants, and professional development.</p>
         <p>Tackle Montana is one of MIS's direct-support programs — putting elite coaching directly into schools at no cost.</p>
       </div>
-      <div class="split-media">
-        <img src="assets/coach_gallatin.jpg" alt="Coach Jed Holloway with Bozeman Gallatin High School Football">
+      <div class="split-media" data-reveal="right">
+        <div class="reveal-clip">
+          <img src="assets/coach_gallatin.jpg" alt="Coach Jed Holloway with Bozeman Gallatin High School Football">
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <section class="cta-band">
-  <div class="wrap reveal">
+  <div class="ambient"><span></span><span></span><span></span></div>
+  <div class="wrap" data-reveal="up" style="position:relative; z-index:1;">
     <h2>Bring this coaching staff to your program.</h2>
-    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="btn btn-pink" target="_blank" rel="noopener">Schedule Here</a>
+    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="btn btn-pink" target="_blank" rel="noopener">Schedule Here <span class="arrow">↗</span></a>
   </div>
 </section>
+
+</main>
 
 <footer class="site-footer">
   <div class="wrap">

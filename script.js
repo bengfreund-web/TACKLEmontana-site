@@ -1,3 +1,5 @@
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // ============================================
 // Mobile nav toggle
 // ============================================
@@ -18,23 +20,32 @@ if (navToggle) {
 }
 
 // ============================================
-// Scroll reveal
+// Sticky header state on scroll
 // ============================================
-const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const header = document.querySelector('.site-header');
+if (header) {
+  const setHeaderState = () => header.classList.toggle('scrolled', window.scrollY > 12);
+  setHeaderState();
+  window.addEventListener('scroll', setHeaderState, { passive: true });
+}
+
+// ============================================
+// Reveal-on-scroll (supports [data-reveal] and legacy .reveal/.reveal-stagger)
+// ============================================
+const revealTargets = document.querySelectorAll('[data-reveal], .reveal, .reveal-stagger');
 
 if (prefersReduced) {
-  revealEls.forEach(el => el.classList.add('in'));
+  revealTargets.forEach(el => el.classList.add('in'));
 } else {
-  const io = new IntersectionObserver((entries) => {
+  const revealIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in');
-        io.unobserve(entry.target);
+        revealIO.unobserve(entry.target);
       }
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-  revealEls.forEach(el => io.observe(el));
+  revealTargets.forEach(el => revealIO.observe(el));
 }
 
 // ============================================
@@ -44,7 +55,7 @@ const counters = document.querySelectorAll('[data-count]');
 function animateCount(el) {
   const target = parseFloat(el.dataset.count);
   const suffix = el.dataset.suffix || '';
-  const duration = 1400;
+  const duration = 1500;
   const start = performance.now();
   function tick(now) {
     const p = Math.min((now - start) / duration, 1);
@@ -69,6 +80,33 @@ if (counters.length) {
     });
   }, { threshold: 0.6 });
   counters.forEach(el => cIo.observe(el));
+}
+
+// ============================================
+// Hero parallax (subtle, disabled for reduced motion)
+// ============================================
+if (!prefersReduced) {
+  const parallaxEls = document.querySelectorAll('[data-parallax]');
+  if (parallaxEls.length) {
+    let ticking = false;
+    function updateParallax() {
+      const y = window.scrollY;
+      parallaxEls.forEach(el => {
+        const speed = parseFloat(el.dataset.parallax) || 0.15;
+        const rect = el.closest('section')?.getBoundingClientRect();
+        if (!rect || rect.bottom < 0 || rect.top > window.innerHeight) return;
+        el.style.transform = `translate3d(0, ${y * speed}px, 0)`;
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+    updateParallax();
+  }
 }
 
 // ============================================
@@ -110,11 +148,54 @@ document.querySelectorAll('.carousel').forEach(carousel => {
 });
 
 // ============================================
-// Header shadow on scroll
+// Smooth-animated FAQ accordion (single-open, accessible <details>)
 // ============================================
-const header = document.querySelector('.site-header');
-if (header) {
-  window.addEventListener('scroll', () => {
-    header.style.boxShadow = window.scrollY > 12 ? '0 6px 20px rgba(0,0,0,0.25)' : 'none';
-  }, { passive: true });
-}
+document.querySelectorAll('.faq-list').forEach(list => {
+  const items = list.querySelectorAll('.faq-item');
+  items.forEach(item => {
+    const summary = item.querySelector('summary');
+    const body = item.querySelector('.faq-body');
+    if (!summary || !body) return;
+
+    summary.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isOpen = item.hasAttribute('open');
+
+      if (isOpen) {
+        closeItem(item, body);
+      } else {
+        items.forEach(other => {
+          if (other !== item && other.hasAttribute('open')) {
+            closeItem(other, other.querySelector('.faq-body'));
+          }
+        });
+        openItem(item, body);
+      }
+    });
+  });
+
+  function openItem(item, body) {
+    item.setAttribute('open', '');
+    const target = body.scrollHeight;
+    body.style.height = '0px';
+    requestAnimationFrame(() => {
+      body.style.height = target + 'px';
+    });
+    body.addEventListener('transitionend', function onEnd() {
+      body.style.height = 'auto';
+      body.removeEventListener('transitionend', onEnd);
+    }, { once: true });
+  }
+
+  function closeItem(item, body) {
+    const current = body.scrollHeight;
+    body.style.height = current + 'px';
+    requestAnimationFrame(() => {
+      body.style.height = '0px';
+    });
+    body.addEventListener('transitionend', function onEnd() {
+      item.removeAttribute('open');
+      body.removeEventListener('transitionend', onEnd);
+    }, { once: true });
+  }
+});

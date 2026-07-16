@@ -7,7 +7,7 @@
 <meta name="description" content="One free 45-minute on-field session led by elite international rugby coaches, teaching Montana football players safer, smarter tackle technique.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,19 +26,23 @@
   </nav>
 </header>
 
-<section class="hero" style="background-image:url('assets/hero_badge_field.jpg');">
+<main>
+
+<section class="hero">
+  <div class="hero-bg" data-parallax="0.18" style="background-image:url('assets/hero_badge_field.jpg');"></div>
   <div class="wrap hero-inner">
-    <p class="eyebrow reveal">Free · On-Field · 45 Minutes</p>
-    <h1 class="reveal">Rugby-based tackle technique <span class="hl">for Montana football.</span></h1>
-    <p class="lead reveal">One free, on-field session led by elite international rugby coaches — brought directly to your program and scheduled within the next two months.</p>
-    <div class="hero-cta-row reveal">
-      <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="btn btn-pink" target="_blank" rel="noopener">Schedule Here</a>
-      <a href="mission.html" class="btn btn-outline">Our Mission</a>
+    <p class="eyebrow" data-reveal="up">Free · On-Field · 45 Minutes</p>
+    <h1 data-reveal="up">Rugby-based tackle technique <span class="hl">for Montana football.</span></h1>
+    <p class="lead" data-reveal="up">One free, on-field session led by elite international rugby coaches — brought directly to your program and scheduled within the next two months.</p>
+    <div class="hero-cta-row" data-reveal="up">
+      <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="btn btn-pink" target="_blank" rel="noopener">Schedule Here <span class="arrow">↗</span></a>
+      <a href="mission.html" class="btn btn-outline">Our Mission <span class="arrow">↗</span></a>
     </div>
   </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="dot"></span></div>
 </section>
 
-<section class="stats">
+<section class="stats" aria-label="Tackle Montana at a glance">
   <div class="wrap" style="display:grid; grid-template-columns:repeat(3,1fr); width:100%;">
     <div class="stat"><div class="num">$0</div><div class="label">Cost to your school</div></div>
     <div class="stat"><div class="num" data-count="45" data-suffix=" min">0</div><div class="label">Single session length</div></div>
@@ -46,17 +50,18 @@
   </div>
 </section>
 
-
 <section class="section-pad section-alt">
   <div class="wrap">
-    <div class="split reveal">
-      <div>
+    <div class="split" data-reveal="fade">
+      <div data-reveal="up">
         <p class="eyebrow">The Program</p>
         <h3>Fundamentals coaches and athletes can use immediately.</h3>
         <p>Tackle Montana brings internationally experienced rugby coaches into schools to teach football players the safe tackle technique rugby is built around — adapted for American football and focused on fundamentals that stick from day one.</p>
       </div>
-      <div class="split-media">
-        <img src="assets/coach_gallatin.jpg" alt="Coach Jed Holloway leading a session with Bozeman Gallatin High School Football">
+      <div class="split-media" data-reveal="right">
+        <div class="reveal-clip">
+          <img src="assets/coach_gallatin.jpg" alt="Coach Jed Holloway leading a session with Bozeman Gallatin High School Football">
+        </div>
         <p class="caption">Coach Jed Holloway with Bozeman Gallatin High School Football</p>
       </div>
     </div>
@@ -65,11 +70,11 @@
 
 <section class="section-pad">
   <div class="wrap">
-    <div class="section-head reveal" style="margin:0 auto 36px; text-align:center; max-width:100%;">
-      <p class="eyebrow">Trusted Statewide</p>
+    <div class="section-head center" data-reveal="up" style="max-width:100%;">
+      <p class="eyebrow" style="justify-content:center;">Trusted Statewide</p>
       <h2>Programs we've worked with</h2>
     </div>
-    <div class="logo-strip reveal">
+    <div class="logo-strip" data-reveal="fade">
       <img src="assets/logo_raptors.png" alt="Raptors partner school logo">
       <img src="assets/logo_bison.png" alt="Bison partner school logo">
       <img src="assets/logo_hawk.png" alt="Hawk partner school logo">
@@ -78,38 +83,39 @@
 </section>
 
 <section class="cta-band">
-  <div class="wrap reveal">
+  <div class="ambient"><span></span><span></span><span></span></div>
+  <div class="wrap" data-reveal="up" style="position:relative; z-index:1;">
     <h2>Get a free session on the calendar.</h2>
-    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="btn btn-pink" target="_blank" rel="noopener">Schedule Here</a>
+    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="btn btn-pink" target="_blank" rel="noopener">Schedule Here <span class="arrow">↗</span></a>
   </div>
 </section>
 
 <section class="section-pad section-alt">
   <div class="wrap">
-    <div class="section-head reveal">
+    <div class="section-head" data-reveal="up">
       <p class="eyebrow">Why It's Worth 15 Minutes</p>
       <h2>No cost. No complexity. Real results.</h2>
     </div>
     <div class="cards reveal-stagger">
       <div class="card r-item">
         <div class="icon">
-          <svg width="46" height="46" viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="21" stroke="#C3F04F" stroke-width="3"/><path d="M23 12v11l7 7" stroke="#0A1628" stroke-width="3" stroke-linecap="round"/></svg>
+          <svg width="24" height="24" viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="21" stroke="#0A1628" stroke-width="3"/><path d="M23 12v11l7 7" stroke="#0A1628" stroke-width="3" stroke-linecap="round"/></svg>
         </div>
-        <h4>Completely free</h4>
+        <h4>Completely free.</h4>
         <p>No cost to the school, athletic department, players, or families — ever.</p>
       </div>
       <div class="card r-item">
         <div class="icon">
-          <svg width="46" height="46" viewBox="0 0 46 46" fill="none"><rect x="6" y="10" width="34" height="28" rx="2" stroke="#4FB0F0" stroke-width="3"/><path d="M6 18h34" stroke="#0A1628" stroke-width="3"/></svg>
+          <svg width="24" height="24" viewBox="0 0 46 46" fill="none"><rect x="6" y="10" width="34" height="28" rx="2" stroke="#0A1628" stroke-width="3"/><path d="M6 18h34" stroke="#0A1628" stroke-width="3"/></svg>
         </div>
-        <h4>One session, your calendar</h4>
-        <p>A single 45-minute on-field session, scheduled entirely around your team's schedule.</p>
+        <h4>Built around your calendar.</h4>
+        <p>One 45-minute, on-field session, scheduled entirely around your team's schedule.</p>
       </div>
       <div class="card r-item">
         <div class="icon">
-          <svg width="46" height="46" viewBox="0 0 46 46" fill="none"><path d="M23 5l16 6v11c0 10-7 16-16 19-9-3-16-9-16-19V11l16-6z" stroke="#E63080" stroke-width="3"/></svg>
+          <svg width="24" height="24" viewBox="0 0 46 46" fill="none"><path d="M23 5l16 6v11c0 10-7 16-16 19-9-3-16-9-16-19V11l16-6z" stroke="#0A1628" stroke-width="3"/></svg>
         </div>
-        <h4>Built for safer contact</h4>
+        <h4>Built for safer contact.</h4>
         <p>Emphasis on body position, head placement, tracking, footwork, and confidence.</p>
       </div>
     </div>
@@ -118,15 +124,15 @@
 
 <section class="section-pad">
   <div class="wrap">
-    <div class="section-head reveal" style="margin:0 auto 48px; text-align:center; max-width:640px;">
-      <p class="eyebrow">How To Book</p>
+    <div class="section-head center" data-reveal="up" style="max-width:640px;">
+      <p class="eyebrow" style="justify-content:center;">How To Book</p>
       <h2>Four steps to a free session.</h2>
     </div>
     <div class="steps reveal-stagger">
       <div class="step r-item">
         <div class="step-num">1</div>
         <h4>Reach out</h4>
-        <p>Submit the expression of interest form — takes less than two minutes.</p>
+        <p>Submit the expression of interest form — it takes less than two minutes.</p>
       </div>
       <div class="step r-item">
         <div class="step-num">2</div>
@@ -136,7 +142,7 @@
       <div class="step r-item">
         <div class="step-num">3</div>
         <h4>Coaches show up</h4>
-        <p>Our coaching staff runs one free 45-minute, on-field session with your team.</p>
+        <p>Our coaching staff runs one free, 45-minute, on-field session with your team.</p>
       </div>
       <div class="step r-item">
         <div class="step-num">4</div>
@@ -149,16 +155,16 @@
 
 <section class="section-pad section-alt">
   <div class="wrap">
-    <div class="split reverse reveal">
-      <div class="split-media">
-        <svg width="100%" height="240" viewBox="0 0 400 240" style="border-radius:6px;border:3px solid var(--navy-deep);" preserveAspectRatio="xMidYMid slice">
+    <div class="split reverse" data-reveal="fade">
+      <div class="split-media" data-reveal="left">
+        <svg width="100%" height="240" viewBox="0 0 400 240" style="border-radius:16px;" preserveAspectRatio="xMidYMid slice">
           <rect width="400" height="240" fill="#0A1628"/>
           <polygon points="0,240 40,140 90,190 150,90 210,170 260,110 320,180 360,130 400,240" fill="#13233B"/>
           <polygon points="60,240 120,150 180,210 240,120 300,200 360,150 400,240" fill="#4FB0F0" opacity="0.85"/>
-          <text x="200" y="60" text-anchor="middle" fill="#C3F04F" font-family="Poppins" font-weight="800" font-size="26">MONTANA</text>
+          <text x="200" y="60" text-anchor="middle" fill="#C3F04F" font-family="Bricolage Grotesque" font-weight="700" font-size="26">MONTANA</text>
         </svg>
       </div>
-      <div>
+      <div data-reveal="up">
         <p class="eyebrow">About MIS</p>
         <h3>Better young Montanans, through physical education.</h3>
         <p>Founded in 2022 by Ali Behnam and JD Stephenson, the Montana Institute of Sport is a 501(c)(3) nonprofit improving physical education across Montana's public schools through curriculum support, teaching grants, and professional development. Tackle Montana is one of the ways MIS puts that mission on the field.</p>
@@ -170,45 +176,46 @@
 
 <section class="section-pad">
   <div class="wrap">
-    <div class="section-head reveal" style="margin:0 auto 36px; text-align:center; max-width:640px;">
-      <p class="eyebrow">Questions</p>
+    <div class="section-head center" data-reveal="up" style="max-width:640px;">
+      <p class="eyebrow" style="justify-content:center;">Questions</p>
       <h2>Frequently asked questions.</h2>
     </div>
-    <div class="faq-list reveal">
+    <div class="faq-list" data-reveal="up">
       <details class="faq-item">
-        <summary>Is Tackle Montana really free?</summary>
-        <p>Yes. There is no cost to your school, athletic department, players, or families — ever. The session is fully funded by the Montana Institute of Sport.</p>
+        <summary>Is Tackle Montana really free? <span class="faq-icon">+</span></summary>
+        <div class="faq-body"><p>Yes. There is no cost to your school, athletic department, players, or families — ever. The session is fully funded by the Montana Institute of Sport.</p></div>
       </details>
       <details class="faq-item">
-        <summary>How long is the session, and what does it involve?</summary>
-        <p>One 45-minute, on-field session led by our coaching staff, focused on rugby-based tackle fundamentals: body position, head placement, tracking, and footwork.</p>
+        <summary>How long is the session, and what does it involve? <span class="faq-icon">+</span></summary>
+        <div class="faq-body"><p>One 45-minute, on-field session led by our coaching staff, focused on rugby-based tackle fundamentals: body position, head placement, tracking, and footwork.</p></div>
       </details>
       <details class="faq-item">
-        <summary>Do we need pads or full contact gear?</summary>
-        <p>No. Sessions can run in practice gear, and we also offer a low-impact option that builds technique without taking players to the ground.</p>
+        <summary>Do we need pads or full contact gear? <span class="faq-icon">+</span></summary>
+        <div class="faq-body"><p>No. Sessions can run in practice gear, and we also offer a low-impact option that builds technique without taking players to the ground.</p></div>
       </details>
       <details class="faq-item">
-        <summary>Who can request a session?</summary>
-        <p>Any Montana football program — middle school, high school, or club — along with PE departments and coaches looking to improve tackle teaching.</p>
+        <summary>Who can request a session? <span class="faq-icon">+</span></summary>
+        <div class="faq-body"><p>Any Montana football program — middle school, high school, or club — along with PE departments and coaches looking to improve tackle teaching.</p></div>
       </details>
       <details class="faq-item">
-        <summary>How far in advance should we schedule?</summary>
-        <p>Submit the form and JD Stephenson will follow up to lock in a date, typically within the next two months, built entirely around your team's calendar.</p>
+        <summary>How far in advance should we schedule? <span class="faq-icon">+</span></summary>
+        <div class="faq-body"><p>Submit the form and JD Stephenson will follow up to lock in a date, typically within the next two months, built entirely around your team's calendar.</p></div>
       </details>
     </div>
   </div>
 </section>
 
-<section class="section-pad section-dark">
-  <div class="wrap" style="text-align:center;">
-    <div class="reveal">
-      <p class="eyebrow">Bring Tackle Montana to Your Program</p>
-      <h2 style="margin:12px 0 20px; font-size:clamp(26px,3.4vw,38px);">MIS handles the setup. You just show up.</h2>
-      <p style="max-width:520px; margin:0 auto 28px;">Contact JD Stephenson to schedule your free session.</p>
-      <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="btn btn-pink" target="_blank" rel="noopener">Schedule Here</a>
-    </div>
+<section class="section-pad section-dark" style="overflow:hidden;">
+  <div class="ambient"><span></span><span></span><span></span></div>
+  <div class="wrap" style="text-align:center; position:relative; z-index:1;" data-reveal="up">
+    <p class="eyebrow">Bring Tackle Montana to Your Program</p>
+    <h2 style="margin:12px 0 20px; font-size:clamp(26px,3.4vw,38px);">MIS handles the setup. You just show up.</h2>
+    <p style="max-width:520px; margin:0 auto 28px;">Contact JD Stephenson to schedule your free session.</p>
+    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="btn btn-pink" target="_blank" rel="noopener">Schedule Here <span class="arrow">↗</span></a>
   </div>
 </section>
+
+</main>
 
 <footer class="site-footer">
   <div class="wrap">
