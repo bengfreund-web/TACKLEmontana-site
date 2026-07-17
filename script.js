@@ -199,3 +199,23 @@ document.querySelectorAll('.faq-list').forEach(list => {
     }, { once: true });
   }
 });
+
+// ============================================
+// Scroll-triggered video (plays while in view, pauses otherwise)
+// ============================================
+document.querySelectorAll('.video-frame video').forEach(video => {
+  if (prefersReduced) return;
+  const frame = video.closest('.video-frame');
+  const vIo = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+        frame.classList.add('playing');
+      } else {
+        video.pause();
+        frame.classList.remove('playing');
+      }
+    });
+  }, { threshold: 0.5 });
+  vIo.observe(video);
+});
