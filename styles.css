@@ -785,15 +785,26 @@ section { position: relative; }
 /* ============================================
    SCROLL VIDEO
    ============================================ */
+.video-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+.video-grid .video-frame { margin: 0; }
+
 .video-frame {
   position: relative;
   max-width: 380px;
+  width: 100%;
   margin: 0 auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   background: var(--navy-deep);
 }
+.video-grid .video-frame { max-width: 320px; }
 .video-frame video {
   display: block;
   width: 100%;
