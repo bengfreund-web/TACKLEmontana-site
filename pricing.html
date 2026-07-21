@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program Budget — Tackle Montana</title>
+<meta name="description" content="A transparent, itemized breakdown of the estimated annual cost for a Montana school to add sanctioned varsity rugby — under $5,000 per school, per year.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Scoped "budget ledger" treatment — restrained navy/gold, distinct from the
+     rest of the site's playful marketing tone, for this one funding-proposal page. */
+  :root { --gold: #AD8A3D; --gold-soft: rgba(173,138,61,0.12); }
+
+  .budget-hero { background: var(--navy-deep); padding: 96px 0 64px; }
+  .budget-hero .eyebrow { color: var(--gold); }
+  .budget-hero h1 { color: var(--white); font-size: clamp(34px, 3.4vw + 20px, 58px); max-width: 720px; margin-top: 14px; }
+  .budget-hero p.lead { color: rgba(245,245,245,0.72); font-size: 16.5px; max-width: 580px; margin-top: 18px; }
+
+  .total-banner {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 16px;
+    background: rgba(173,138,61,0.12);
+    border: 1px solid rgba(173,138,61,0.4);
+    border-radius: var(--radius);
+    padding: 20px 28px;
+    margin-top: 32px;
+  }
+  .total-banner .amount { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 3vw, 40px); color: var(--gold); letter-spacing: -0.01em; }
+  .total-banner .label { font-size: 13px; color: rgba(245,245,245,0.72); max-width: 190px; line-height: 1.4; }
+
+  .cost-list { max-width: 760px; margin: 0 auto; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
+  .cost-list .faq-item { border-bottom: 1px solid var(--line); }
+  .cost-list .faq-item:last-of-type { border-bottom: none; }
+  .cost-summary { padding: 6px 26px; }
+  .cost-summary .faq-icon { background: var(--navy-deep); }
+  .faq-item[open] .cost-summary .faq-icon { background: var(--gold); }
+  .cost-name-amt { display: flex; align-items: baseline; gap: 16px; flex: 1; }
+  .cost-name { font-family: var(--font-display); font-weight: 700; font-size: 16.5px; color: var(--navy-deep); min-width: 140px; }
+  .cost-amount { font-family: var(--font-display); font-weight: 800; font-size: 19px; color: var(--navy-deep); margin-left: auto; }
+  .cost-list .faq-item p.cost-detail { color: var(--ink-soft); font-size: 14.5px; padding-left: 26px; }
+
+  .cost-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px 26px;
+    background: var(--navy-deep);
+  }
+  .cost-total .cost-name { color: var(--white); font-size: 17.5px; }
+  .cost-total .cost-amount { color: var(--gold); font-size: 24px; }
+  .cost-total .cost-sub { color: rgba(245,245,245,0.6); font-size: 13px; display: block; margin-top: 3px; }
+
+  .budget-note {
+    max-width: 760px;
+    margin: 22px auto 0;
+    font-size: 13px;
+    color: var(--ink-faint);
+    font-style: italic;
+    border-left: 3px solid var(--line);
+    padding-left: 14px;
+  }
+
+  @media (max-width: 560px) {
+    .cost-summary { padding: 6px 18px; }
+    .cost-name-amt { flex-wrap: wrap; }
+    .cost-list .faq-item p.cost-detail { padding-left: 18px; }
+    .cost-total { padding: 20px 18px; flex-direction: column; align-items: flex-start; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="nav-brand"><img src="assets/logo_badge.png" alt="Tackle Montana logo"><span class="brand-text">TACKLE <span class="accent">MONTANA</span></span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="mission.html">Mission</a>
+      <a href="about.html">About Us</a>
+      <a href="partners.html">Partners</a>
+      <a href="pricing.html" class="active">Budget</a>
+      <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="nav-cta" target="_blank" rel="noopener">Schedule</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="budget-hero">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal="up">Program Budget</p>
+    <h1 data-reveal="up">Under $5K Per Year Sport</h1>
+    <p class="lead" data-reveal="up">A full, itemized accounting of the estimated annual cost for one school to field a sanctioned varsity rugby program — prepared for athletic directors and MHSA officials. Tap any line for the math behind it.</p>
+    <div class="total-banner" data-reveal="up">
+      <span class="amount">$4,402.06</span>
+      <span class="label">Total estimated annual cost per school</span>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="wrap">
+    <div class="section-head center" data-reveal="up" style="max-width:640px;">
+      <p class="eyebrow" style="justify-content:center;">Cost Breakdown</p>
+      <h2>Every line, largest to smallest.</h2>
+    </div>
+
+    <div class="cost-list faq-list" data-reveal="up">
+
+      <details class="faq-item">
+        <summary class="cost-summary">
+          <div class="cost-name-amt">
+            <span class="cost-name">Travel</span>
+            <span class="cost-amount">$2,714.56</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-body"><p class="cost-detail">4 legs (regular season) × 8-hour bus ride × $84.83/hr = $678.64/trip.</p></div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="cost-summary">
+          <div class="cost-name-amt">
+            <span class="cost-name">Coaching Staff</span>
+            <span class="cost-amount">$750</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-body"><p class="cost-detail">Head Coach stipend: $500 · Assistant Coaches stipend: $250. Basis: 1 Head Coach + 3 Assistant Coaches per school.</p></div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="cost-summary">
+          <div class="cost-name-amt">
+            <span class="cost-name">Uniforms</span>
+            <span class="cost-amount">$500/year</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-body"><p class="cost-detail">One-time cost of $2,500, depreciated over 5 years.</p></div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="cost-summary">
+          <div class="cost-name-amt">
+            <span class="cost-name">MHSA Fee</span>
+            <span class="cost-amount">$250</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-body"><p class="cost-detail">State sanctioning fee.</p></div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="cost-summary">
+          <div class="cost-name-amt">
+            <span class="cost-name">Referees</span>
+            <span class="cost-amount">$187.50</span>
+          </div>
+          <span class="faq-icon">+</span>
+        </summary>
+        <div class="faq-body"><p class="cost-detail">Basis: $25/match × 15 matches per tournament = $375, split evenly between the two competing schools. See the <a href="schedule.html" style="color:var(--navy-deep); text-decoration:underline;">proposed schedule</a> for how 15 matches per leg is calculated.</p></div>
+      </details>
+
+      <div class="cost-total">
+        <span class="cost-name">Total<span class="cost-sub">Annual estimated cost per school</span></span>
+        <span class="cost-amount">$4,402.06</span>
+      </div>
+
+    </div>
+
+    <p class="budget-note">Based on a 4-leg regular season; State Championship travel not included.</p>
+  </div>
+</section>
+
+<section class="section-pad section-alt">
+  <div class="wrap">
+    <div class="section-head center" data-reveal="up" style="max-width:640px;">
+      <p class="eyebrow" style="justify-content:center;">The Planning Behind The Numbers</p>
+      <h2>These figures aren't guesses.</h2>
+    </div>
+    <div class="two-cta" data-reveal="up">
+      <div class="cta-card">
+        <span class="tag">Season Plan</span>
+        <h4>See the proposed 2028 schedule.</h4>
+        <p>The 4-leg regular season, State Championship, and per-leg match format that the travel and referee figures above are built from.</p>
+        <a href="schedule.html" class="btn btn-dark btn-sm">View Schedule <span class="arrow">↗</span></a>
+      </div>
+      <div class="cta-card">
+        <span class="tag">Questions</span>
+        <h4>Talk it through with our staff.</h4>
+        <p>Have a question about a line item, or want to walk through the numbers with your budget committee?</p>
+        <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="btn btn-dark btn-sm" target="_blank" rel="noopener">Get In Touch <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="ambient"><span></span><span></span><span></span></div>
+  <div class="wrap" data-reveal="up" style="position:relative; z-index:1;">
+    <h2>Bring rugby to your athletic program.</h2>
+    <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="btn btn-pink" target="_blank" rel="noopener">Schedule Here <span class="arrow">↗</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="assets/logo_badge.png" alt="Tackle Montana logo">TACKLE MONTANA</div>
+        <p style="max-width:320px;">Free, rugby-based tackle coaching for Montana football.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <a href="index.html">Home</a>
+        <a href="mission.html">Mission</a>
+        <a href="about.html">About Us</a>
+        <a href="partners.html">Partners</a>
+        <a href="pricing.html">Budget</a>
+        <a href="schedule.html">Proposed Schedule</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:3149547194">(314) 954-7194</a>
+        <a href="mailto:jstephenson@montanainstituteofsport.org">jstephenson@montanainstituteofsport.org</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tackle Montana / Montana Institute of Sport.</span>
+      <span>A Montana Institute of Sport Program</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

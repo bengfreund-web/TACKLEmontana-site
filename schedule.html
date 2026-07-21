@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposed Schedule — Tackle Montana</title>
+<meta name="description" content="The proposed 2028 varsity rugby season for Montana: a 4-leg regular season plus State Championship, and the per-leg match format the budget is built from.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Same restrained navy/gold ledger treatment as the Budget page. */
+  :root { --gold: #AD8A3D; --gold-soft: rgba(173,138,61,0.12); }
+
+  .budget-hero { background: var(--navy-deep); padding: 96px 0 64px; }
+  .budget-hero .eyebrow { color: var(--gold); }
+  .budget-hero h1 { color: var(--white); font-size: clamp(34px, 3.4vw + 20px, 58px); max-width: 720px; margin-top: 14px; }
+  .budget-hero p.lead { color: rgba(245,245,245,0.72); font-size: 16.5px; max-width: 580px; margin-top: 18px; }
+
+  .season-table { width: 100%; border-collapse: collapse; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; max-width: 780px; margin: 0 auto; }
+  .season-table th { text-align: left; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; background: #F6F7FA; padding: 14px 22px; border-bottom: 1px solid var(--line); }
+  .season-table td { padding: 16px 22px; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .season-table tr:last-of-type td { border-bottom: none; }
+  .season-table tr.championship-row td { background: var(--gold-soft); }
+  .season-table .leg-name { font-family: var(--font-display); font-weight: 700; color: var(--navy-deep); }
+  .season-table .leg-date { color: var(--ink-soft); white-space: nowrap; }
+  .season-table .leg-loc { color: var(--ink-soft); }
+
+  .grid-table { width: 100%; border-collapse: collapse; max-width: 620px; margin: 0 auto; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .grid-table th { text-align: left; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); font-weight: 700; background: #F6F7FA; padding: 10px 20px; border-bottom: 1px solid var(--line); }
+  .grid-table td { padding: 9px 20px; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--ink-soft); }
+  .grid-table tr:last-of-type td { border-bottom: none; }
+  .grid-table .time-cell { font-weight: 700; color: var(--navy-deep); white-space: nowrap; }
+  .grid-table tr:nth-child(3n+2) td:not(.time-cell) { color: var(--navy-deep); }
+
+  .format-stats { display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; margin: 0 auto 36px; }
+  .format-stat { text-align: center; }
+  .format-stat .num { font-family: var(--font-display); font-weight: 800; font-size: 30px; color: var(--gold); }
+  .format-stat .lbl { font-size: 12.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+  .budget-note {
+    max-width: 620px;
+    margin: 20px auto 0;
+    font-size: 13px;
+    color: var(--ink-faint);
+    font-style: italic;
+    border-left: 3px solid var(--line);
+    padding-left: 14px;
+  }
+
+  @media (max-width: 560px) {
+    .season-table th, .season-table td { padding: 12px 16px; }
+    .grid-table th, .grid-table td { padding: 8px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="nav-brand"><img src="assets/logo_badge.png" alt="Tackle Montana logo"><span class="brand-text">TACKLE <span class="accent">MONTANA</span></span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="mission.html">Mission</a>
+      <a href="about.html">About Us</a>
+      <a href="partners.html">Partners</a>
+      <a href="pricing.html">Budget</a>
+      <a href="https://docs.google.com/forms/u/3/d/e/1FAIpQLSf6CSPPVzXjGWTdhNy8_GK6WcX5dSI_mU9gvmukcVmK6zs5qw/viewform?usp=header" class="nav-cta" target="_blank" rel="noopener">Schedule</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="budget-hero">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal="up">Proposed Schedule</p>
+    <h1 data-reveal="up">A full season, already mapped out.</h1>
+    <p class="lead" data-reveal="up">The 4-leg regular season and State Championship this proposal is built around — plus the per-leg match format that the travel and referee figures on the <a href="pricing.html" style="color:var(--gold); text-decoration:underline;">budget page</a> come from.</p>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="wrap">
+    <div class="section-head center" data-reveal="up" style="max-width:640px;">
+      <p class="eyebrow" style="justify-content:center;">2028 Season</p>
+      <h2>Four legs, one state championship.</h2>
+    </div>
+
+    <table class="season-table" data-reveal="up">
+      <thead>
+        <tr><th>Date</th><th>Event</th><th>Location</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="leg-date">4/3/2028</td>
+          <td class="leg-name">Leg 1</td>
+          <td class="leg-loc">Bozeman, MT</td>
+        </tr>
+        <tr>
+          <td class="leg-date">4/10/2028</td>
+          <td class="leg-name">Leg 2</td>
+          <td class="leg-loc">East Helena, MT</td>
+        </tr>
+        <tr>
+          <td class="leg-date">4/17/2028</td>
+          <td class="leg-name">Leg 3</td>
+          <td class="leg-loc">Bozeman, MT</td>
+        </tr>
+        <tr>
+          <td class="leg-date">4/24/2028</td>
+          <td class="leg-name">Leg 4</td>
+          <td class="leg-loc">Missoula, MT</td>
+        </tr>
+        <tr class="championship-row">
+          <td class="leg-date">5/1/2028</td>
+          <td class="leg-name">State Championship</td>
+          <td class="leg-loc">Bozeman, MT</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="budget-note" style="max-width:780px;">Regular-season legs rotate hosting duties across partner schools; travel costs on the budget page reflect the away-trip legs.</p>
+  </div>
+</section>
+
+<section class="section-pad section-alt">
+  <div class="wrap">
+    <div class="section-head center" data-reveal="up" style="max-width:640px;">
+      <p class="eyebrow" style="justify-content:center;">Per-Leg Format</p>
+      <h2>How one leg fits into a single day.</h2>
+    </div>
+
+    <div class="format-stats" data-reveal="up">
+      <div class="format-stat"><div class="num">10</div><div class="lbl">Teams per leg</div></div>
+      <div class="format-stat"><div class="num">15</div><div class="lbl">Matches per leg</div></div>
+      <div class="format-stat"><div class="num">20 min</div><div class="lbl">Between kickoffs</div></div>
+      <div class="format-stat"><div class="num">~5 hrs</div><div class="lbl">10 AM – 2:40 PM</div></div>
+    </div>
+
+    <table class="grid-table" data-reveal="up">
+      <thead><tr><th>Kickoff</th><th>Match</th></tr></thead>
+      <tbody>
+        <tr><td class="time-cell">10:00 AM</td><td>Team 1 vs. Team 2</td></tr>
+        <tr><td class="time-cell">10:20 AM</td><td>Team 3 vs. Team 4</td></tr>
+        <tr><td class="time-cell">10:40 AM</td><td>Team 5 vs. Team 6</td></tr>
+        <tr><td class="time-cell">11:00 AM</td><td>Team 7 vs. Team 8</td></tr>
+        <tr><td class="time-cell">11:20 AM</td><td>Team 9 vs. Team 10</td></tr>
+        <tr><td class="time-cell">11:40 AM</td><td>Team 1 vs. Team 2</td></tr>
+        <tr><td class="time-cell">12:00 PM</td><td>Team 3 vs. Team 4</td></tr>
+        <tr><td class="time-cell">12:20 PM</td><td>Team 5 vs. Team 6</td></tr>
+        <tr><td class="time-cell">12:40 PM</td><td>Team 7 vs. Team 8</td></tr>
+        <tr><td class="time-cell">1:00 PM</td><td>Team 9 vs. Team 10</td></tr>
+        <tr><td class="time-cell">1:20 PM</td><td>Team 1 vs. Team 2</td></tr>
+        <tr><td class="time-cell">1:40 PM</td><td>Team 3 vs. Team 4</td></tr>
+        <tr><td class="time-cell">2:00 PM</td><td>Team 5 vs. Team 6</td></tr>
+        <tr><td class="time-cell">2:20 PM</td><td>Team 7 vs. Team 8</td></tr>
+        <tr><td class="time-cell">2:40 PM</td><td>Team 9 vs. Team 10</td></tr>
+      </tbody>
+    </table>
+
+    <p class="budget-note">Illustrative time-slot grid — confirms a single day comfortably fits 15 matches with a 1-hour arrival window before first kickoff. Final matchups are seeded per leg; team numbers above are placeholders, not fixed pairings.</p>
+    <p class="budget-note">This 15-match-per-leg structure is what the $25/match referee cost on the <a href="pricing.html" style="color:var(--navy-deep); text-decoration:underline;">budget page</a> is calculated from.</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="ambient"><span></span><span></span><span></span></div>
+  <div class="wrap" data-reveal="up" style="position:relative; z-index:1;">
+    <h2>Ready to see the full cost breakdown?</h2>
+    <a href="pricing.html" class="btn btn-dark">View The Budget <span class="arrow">↗</span></a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="assets/logo_badge.png" alt="Tackle Montana logo">TACKLE MONTANA</div>
+        <p style="max-width:320px;">Free, rugby-based tackle coaching for Montana football.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <a href="index.html">Home</a>
+        <a href="mission.html">Mission</a>
+        <a href="about.html">About Us</a>
+        <a href="partners.html">Partners</a>
+        <a href="pricing.html">Budget</a>
+        <a href="schedule.html">Proposed Schedule</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:3149547194">(314) 954-7194</a>
+        <a href="mailto:jstephenson@montanainstituteofsport.org">jstephenson@montanainstituteofsport.org</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tackle Montana / Montana Institute of Sport.</span>
+      <span>A Montana Institute of Sport Program</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
