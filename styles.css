@@ -14,6 +14,9 @@
   --pink:        #E63080;
   --pink-rgb:    230, 48, 128;
   --orange:      #E67A40;
+  /* Ledger accent, used by the Budget + Proposed Schedule proposal pages. */
+  --gold:        #AD8A3D;
+  --gold-soft:   rgba(173, 138, 61, 0.12);
   --white:       #F5F5F5;
   --paper:       #FDFDFC;
   --ink:         #10182B;
@@ -67,11 +70,35 @@ a { color: inherit; text-decoration: none; }
 ul { margin: 0; padding: 0; list-style: none; }
 button { font: inherit; }
 
+/* Positioned by default so content always stacks above a section's .ambient
+   blobs (which sit at z-index 0) without per-page inline styles. */
 .wrap {
+  position: relative;
+  z-index: 1;
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 28px;
 }
+
+/* Keyboard users land here first; visually hidden until focused. */
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 200;
+  padding: 12px 20px;
+  border-radius: 100px;
+  background: var(--navy-deep);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14px;
+  transform: translateY(-140%);
+  transition: transform .25s var(--ease);
+}
+.skip-link:focus-visible { transform: translateY(0); }
+
+/* Clears the sticky header when the skip link jumps to content. */
+#main { scroll-margin-top: 88px; }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
@@ -260,13 +287,17 @@ p { line-height: 1.7; color: var(--ink-soft); margin: 0; }
     transform: translateY(-12px);
     opacity: 0;
     pointer-events: none;
-    transition: opacity .3s var(--ease), transform .3s var(--ease);
+    /* visibility (not just opacity) so the closed menu leaves the tab order —
+       otherwise keyboard users tab through invisible links. */
+    visibility: hidden;
+    transition: opacity .3s var(--ease), transform .3s var(--ease), visibility .3s;
     border-top: 1px solid var(--line);
   }
   .nav-links.open {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+    visibility: visible;
   }
   .nav-links a { padding: 16px 14px; font-size: 17px; border-radius: 10px; }
   .nav-links a.active { background: rgba(195,240,79,0.25); color: var(--navy-deep); }
@@ -314,13 +345,6 @@ p { line-height: 1.7; color: var(--ink-soft); margin: 0; }
 .btn-pink { background: var(--pink); color: var(--paper); border-color: var(--pink); }
 .btn-pink:hover { background: #ff4795; border-color: #ff4795; box-shadow: 0 16px 36px rgba(var(--pink-rgb), 0.35); }
 
-.btn-outline {
-  background: transparent;
-  color: var(--white);
-  border-color: rgba(245,245,245,0.5);
-}
-.btn-outline:hover { background: rgba(245,245,245,0.1); border-color: var(--white); }
-
 .btn-dark { background: var(--navy-deep); color: var(--white); border-color: var(--navy-deep); }
 .btn-dark:hover { background: var(--navy); box-shadow: var(--shadow-md); }
 
@@ -340,19 +364,21 @@ p { line-height: 1.7; color: var(--ink-soft); margin: 0; }
 section { position: relative; }
 .section-pad { padding: var(--section-pad) 0; }
 .section-pad-sm { padding: var(--section-pad-sm) 0; }
-.section-dark {
-  background: var(--paper);
-  color: var(--ink);
-}
-.section-dark p { color: var(--ink-soft); }
-.section-dark .eyebrow { color: var(--pink); }
 .section-alt { background: #F6F7FA; }
+/* Clips the drifting .ambient blobs to the section that owns them. */
+.section-ambient { overflow: hidden; }
 
 .section-head {
   max-width: 640px;
   margin-bottom: 48px;
 }
 .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.center { text-align: center; }
+/* Eyebrow on a light band where pink would fight the surrounding navy type. */
+.eyebrow-ink { color: var(--navy-deep); }
+/* h1 included so a page whose lead heading IS the section head (partners.html)
+   can use the correct element without changing how it looks. */
+.section-head h1,
 .section-head h2 {
   font-size: clamp(30px, 2.2vw + 20px, 46px);
   margin-top: 12px;
@@ -405,33 +431,6 @@ section { position: relative; }
   margin-top: 36px;
   flex-wrap: wrap;
 }
-.scroll-cue {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  color: rgba(6,13,24,0.5);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.scroll-cue .dot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--lime);
-  animation: bob 1.8s var(--ease) infinite;
-}
-@keyframes bob {
-  0%, 100% { transform: translateY(0); opacity: 0.4; }
-  50% { transform: translateY(6px); opacity: 1; }
-}
-@media (max-width: 700px) { .scroll-cue { display: none; } }
-
 /* ============================================
    STAT STRIP
    ============================================ */
@@ -472,8 +471,11 @@ section { position: relative; }
   font-weight: 700;
 }
 @media (max-width: 640px) {
-  .stats { grid-template-columns: 1fr; }
-  .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+  /* The grid lives on .stats .wrap, not .stats — targeting .stats here left
+     three stats crammed into 3 columns on phones. */
+  .stats .wrap { grid-template-columns: 1fr; gap: 0; }
+  .stat { padding: 30px 16px; border-right: none; border-bottom: 1px solid var(--line); }
+  .stat:last-child { border-bottom: none; }
 }
 
 /* ============================================
@@ -485,11 +487,8 @@ section { position: relative; }
   gap: 64px;
   align-items: center;
 }
-.split.reverse { grid-template-columns: 0.95fr 1.05fr; }
-.split.reverse .split-media { order: -1; }
 @media (max-width: 860px) {
-  .split, .split.reverse { grid-template-columns: 1fr; }
-  .split.reverse .split-media { order: 0; }
+  .split { grid-template-columns: 1fr; }
 }
 .split-media { position: relative; }
 .split-media .reveal-clip {
@@ -542,6 +541,10 @@ section { position: relative; }
   border-bottom: 1px solid var(--line);
 }
 .cta-band h2 { color: var(--navy-deep); font-size: clamp(26px, 1.6vw + 20px, 42px); margin-bottom: 28px; }
+
+/* Full-width closing pitch at the foot of the home page. */
+.closing-cta h2 { color: var(--navy-deep); font-size: clamp(26px, 3.4vw, 38px); margin: 12px 0 20px; }
+.closing-cta p { max-width: 520px; margin: 0 auto 28px; }
 
 /* ============================================
    FEATURE CARDS
@@ -662,7 +665,9 @@ section { position: relative; }
   transition: transform .4s var(--ease-spring), background .3s var(--ease);
 }
 .faq-item[open] .faq-icon { transform: rotate(45deg); background: var(--pink); }
-.faq-body {
+/* Collapsed height is JS-owned; without .js the native <details> toggle handles
+   it and the answer must not be pinned to height 0. */
+.js .faq-body {
   overflow: hidden;
   height: 0;
   transition: height .4s var(--ease);
@@ -675,94 +680,51 @@ section { position: relative; }
 
 /* ============================================
    REVEAL ANIMATION SYSTEM
+
+   Every rule that HIDES something is scoped to .js, which the inline snippet in
+   each <head> sets. If the script fails to load or throws, nothing is hidden and
+   the page reads as plain content — previously a single JS error left every page
+   blank, because these elements start at opacity 0 and only JS brings them back.
    ============================================ */
-[data-reveal] {
+.js [data-reveal] {
   opacity: 0;
   transition: opacity .8s var(--ease-soft), transform .8s var(--ease-soft), filter .8s var(--ease-soft);
   filter: blur(6px);
 }
-[data-reveal="up"] { transform: translateY(36px); }
-[data-reveal="down"] { transform: translateY(-28px); }
-[data-reveal="left"] { transform: translateX(36px); }
-[data-reveal="right"] { transform: translateX(-36px); }
-[data-reveal="scale"] { transform: scale(0.94); }
-[data-reveal="fade"] { transform: none; }
-[data-reveal].in {
+.js [data-reveal="up"] { transform: translateY(36px); }
+.js [data-reveal="down"] { transform: translateY(-28px); }
+.js [data-reveal="left"] { transform: translateX(36px); }
+.js [data-reveal="right"] { transform: translateX(-36px); }
+.js [data-reveal="scale"] { transform: scale(0.94); }
+.js [data-reveal="fade"] { transform: none; }
+.js [data-reveal].in {
   opacity: 1;
   transform: none;
   filter: blur(0);
 }
 
-/* legacy aliases kept for compatibility */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease-soft), transform .7s var(--ease-soft); }
-.reveal.in { opacity: 1; transform: translateY(0); }
-.reveal-stagger.in .r-item { opacity: 1; transform: translateY(0); filter: blur(0); }
-.r-item { opacity: 0; transform: translateY(26px); filter: blur(4px); transition: opacity .7s var(--ease-soft), transform .7s var(--ease-soft), filter .7s var(--ease-soft); }
-.reveal-stagger.in .r-item:nth-child(1) { transition-delay: .05s; }
-.reveal-stagger.in .r-item:nth-child(2) { transition-delay: .15s; }
-.reveal-stagger.in .r-item:nth-child(3) { transition-delay: .25s; }
-.reveal-stagger.in .r-item:nth-child(4) { transition-delay: .35s; }
+/* Staggered children of a .reveal-stagger container. */
+.js .r-item { opacity: 0; transform: translateY(26px); filter: blur(4px); transition: opacity .7s var(--ease-soft), transform .7s var(--ease-soft), filter .7s var(--ease-soft); }
+.js .reveal-stagger.in .r-item { opacity: 1; transform: translateY(0); filter: blur(0); }
+.js .reveal-stagger.in .r-item:nth-child(1) { transition-delay: .05s; }
+.js .reveal-stagger.in .r-item:nth-child(2) { transition-delay: .15s; }
+.js .reveal-stagger.in .r-item:nth-child(3) { transition-delay: .25s; }
+.js .reveal-stagger.in .r-item:nth-child(4) { transition-delay: .35s; }
+.js .reveal-stagger.in .r-item:nth-child(5) { transition-delay: .45s; }
 
-.reveal-clip {
+.js .reveal-clip {
   clip-path: inset(0 0 100% 0);
   transition: clip-path 1s var(--ease-soft) .1s;
 }
-.in .reveal-clip { clip-path: inset(0 0 0 0); }
-
-/* ============================================
-   TESTIMONIAL
-   ============================================ */
-.testimonial {
-  position: relative;
-  padding: 120px 0;
-  color: var(--white);
-  overflow: hidden;
-  background: var(--navy-deep);
-}
-.testimonial::before {
-  content: "";
-  position: absolute; inset: -20px;
-  background-image: var(--tbg);
-  background-size: cover;
-  background-position: center 35%;
-  filter: blur(9px) saturate(1.1);
-  transform: scale(1.08);
-}
-.testimonial::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(6,13,24,0.95) 20%, rgba(6,13,24,0.78) 100%);
-}
-.testimonial-inner { position: relative; z-index: 2; max-width: 780px; }
-.testimonial-mark {
-  font-family: var(--font-display);
-  font-size: 96px;
-  color: var(--pink);
-  line-height: .6;
-  display: block;
-  margin-bottom: 10px;
-}
-.testimonial blockquote {
-  font-size: clamp(22px, 1.4vw + 16px, 32px);
-  font-weight: 500;
-  line-height: 1.42;
-  margin: 0;
-  letter-spacing: -0.01em;
-}
-.testimonial cite {
-  display: block;
-  margin-top: 28px;
-  font-style: normal;
-  font-weight: 700;
-  color: var(--lime);
-}
-.testimonial cite span { color: rgba(245,245,245,0.7); font-weight: 400; margin-left: 8px; }
+.js .in .reveal-clip { clip-path: inset(0 0 0 0); }
 
 /* ============================================
    CAROUSEL
    ============================================ */
 .carousel {
   position: relative;
+  max-width: 640px;
+  margin: 0 auto;
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -792,8 +754,6 @@ section { position: relative; }
   flex-wrap: wrap;
   gap: 28px;
 }
-.video-grid .video-frame { margin: 0; }
-
 .video-frame {
   position: relative;
   max-width: 380px;
@@ -804,7 +764,7 @@ section { position: relative; }
   box-shadow: var(--shadow-lg);
   background: var(--navy-deep);
 }
-.video-grid .video-frame { max-width: 320px; }
+.video-grid .video-frame { max-width: 320px; margin: 0; }
 .video-frame video {
   display: block;
   width: 100%;
@@ -852,6 +812,8 @@ section { position: relative; }
 .bio:first-of-type { border-top: none; }
 @media (max-width: 700px) { .bio { grid-template-columns: 1fr; } }
 .bio img { border-radius: var(--radius); }
+/* Neutral silhouette stand-in until a portrait is available. */
+.bio-placeholder { border-radius: var(--radius); background: var(--line); }
 .bio h3 { font-size: 27px; color: var(--navy-deep); margin-bottom: 4px; }
 .bio .role { color: var(--pink); font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px; display: block; }
 .achieve-list { display: flex; flex-direction: column; gap: 11px; }
@@ -909,7 +871,8 @@ section { position: relative; }
 }
 @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr; gap: 30px; } }
 .footer-brand { display: flex; align-items: center; gap: 10px; color: var(--white); font-family: var(--font-display); font-weight: 700; font-size: 20px; margin-bottom: 16px; }
-.footer-brand img { height: 42px; }
+.footer-brand img { height: 42px; width: auto; }
+.footer-blurb { max-width: 320px; }
 .footer-col h5 { color: var(--white); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 18px; font-family: var(--font-body); font-weight: 700; }
 .footer-col a, .footer-col p { display: block; font-size: 14.5px; margin-bottom: 11px; color: rgba(245,245,245,0.72); transition: color .25s var(--ease); }
 .footer-col a:hover { color: var(--lime); }
@@ -958,9 +921,39 @@ section { position: relative; }
 .cta-card p { margin-bottom: 24px; }
 
 /* ============================================
+   PROPOSAL PAGES (Budget + Proposed Schedule)
+
+   A restrained navy/gold "ledger" treatment, distinct from the rest of the
+   site's marketing tone. Shared by pricing.html and schedule.html — these rules
+   were previously copy-pasted into a <style> block in both files.
+   ============================================ */
+.budget-hero { background: var(--navy-deep); padding: 96px 0 64px; }
+.budget-hero .eyebrow { color: var(--gold); }
+.budget-hero h1 { color: var(--white); font-size: clamp(34px, 3.4vw + 20px, 58px); max-width: 720px; margin-top: 14px; }
+.budget-hero p.lead { color: rgba(245,245,245,0.72); font-size: 16.5px; max-width: 580px; margin-top: 18px; }
+
+.budget-note {
+  max-width: 760px;
+  margin: 22px auto 0;
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-style: italic;
+  border-left: 3px solid var(--line);
+  padding-left: 14px;
+}
+
+/* Underlined link inside body copy, on light or dark ground. */
+.inline-link { color: var(--navy-deep); text-decoration: underline; }
+.budget-hero .inline-link { color: var(--gold); }
+
+/* ============================================
    PAGE LOAD TRANSITION
    ============================================ */
-body { animation: page-in .5s var(--ease-soft) both; }
+/* 'backwards', not 'both': 'both' retains the final keyframe, leaving an
+   identity transform on <body> forever, which makes it a containing block for
+   every position:fixed descendant (the mobile nav panel). The intro looks the
+   same either way. */
+body { animation: page-in .5s var(--ease-soft) backwards; }
 @keyframes page-in {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
